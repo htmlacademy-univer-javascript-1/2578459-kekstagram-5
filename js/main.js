@@ -26,26 +26,22 @@ function getRandomName() {
   return names[getRandomInt(0, 5)];
 }
 
-function getAvatarString() {
-  return 'img/avatar-' + getRandomInt(1, 6) + '.svg';
-}
-
 function getCommentGenerator() {
   let id = 0;
   return function () {
     id++;
     return {
       id: id,
-      avatar: getAvatarString(),
+      avatar: `img/avatar-${getRandomInt(1, 6)}.svg`,
       message: getRandomMessage(),
       name: getRandomName()
-    }
-  }
+    };
+  };
 }
 
 function createDescriptionFunction() {
   let id = 0;
-  const description = "hello, world!";
+  const description = 'hello, world!';
   const commentGenerator = getCommentGenerator();
   return function () {
     id++;
@@ -56,10 +52,16 @@ function createDescriptionFunction() {
     }
     return {
       id: id,
-      url: 'photos/' + id + '.jpg',
+      url: `photos/${id}.jpg`,
       description: description,
       likes: getRandomInt(15, 200),
       comments: comments,
-    }
-  }
+    };
+  };
+}
+
+const descriptionGenerator = createDescriptionFunction();
+const count = getRandomInt(1, 10);
+for (let i = 0; i < count; i++) {
+  console.log(descriptionGenerator());
 }
