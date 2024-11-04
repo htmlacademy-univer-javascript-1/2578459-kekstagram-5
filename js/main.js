@@ -61,7 +61,7 @@ function createDescriptionFunction() {
 }
 
 const descriptionGenerator = createDescriptionFunction();
-const count = getRandomInt(1, 10);
-for (let i = 0; i < count; i++) {
-  console.log(descriptionGenerator());
+const countDescription = getRandomInt(1, 10);
+for (let i = 0; i < countDescription; i++) {
+  console.log(descriptionGenerator().id);
 }
